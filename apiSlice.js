@@ -20,7 +20,13 @@ export const apiSlice = createApi({
   tagTypes: ["User", "Complaint"],
 
   endpoints: (builder) => ({
-
+  register: builder.mutation({
+  query: (body) => ({
+    url: "/register",
+    method: "POST",
+    body,
+  }),
+}),
   
     login: builder.mutation({
       query: (body) => ({
@@ -59,9 +65,9 @@ deleteIssue: builder.mutation({
 });
 
 
-// ✅ EXPORT HOOKS (VERY IMPORTANT)
 export const {
   useLoginMutation,
+  useRegisterMutation,   
   useGetComplaintsQuery,
   useGetUsersQuery,
   useUpdateIssueMutation,
