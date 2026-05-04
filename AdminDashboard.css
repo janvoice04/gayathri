@@ -221,7 +221,28 @@
 .setting-item {
   margin: 10px 0;
 }
+.admin-controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  gap: 10px;
+}
 
+.search-box {
+  padding: 8px;
+  width: 250px;
+}
+
+.filter-buttons button {
+  margin: 0 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.active-filter {
+  background: #1e3a8a;
+  color: white;
+}
 
 @media (max-width: 768px) {
   .hamburger {
@@ -236,6 +257,7 @@
   .main-section {
     margin-left: 0;
   }
+
 
   .logo {
     text-align: center;
