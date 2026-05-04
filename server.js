@@ -12,7 +12,7 @@ app.listen(3000, () => {
 })
 
 
-// 👇 ADD THIS HERE (after imports, before routes)
+
 const verifyToken = (req, res, next) => {
   const auth = req.headers.authorization;
 
@@ -33,7 +33,7 @@ const verifyToken = (req, res, next) => {
     res.status(401).json({ msg: "Invalid token" });
   }
 };
-// ================= FILE UPLOAD =================
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
@@ -44,12 +44,12 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-// ================= MIDDLEWARE =================
+
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json())
 
-// ================= DB CONNECT =================
+
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log("✅ MongoDB Connected");
@@ -66,7 +66,7 @@ mongoose.connection.on("connected", () => {
   console.log("DB Connected Successfully");
 });
 
-// ================= MODELS =================
+
 const userSchema = mongoose.Schema({
     username: String,
     password: String,
@@ -102,12 +102,12 @@ const userModel = mongoose.model(
 )
 
 const reportModel = mongoose.model(
-  "janVoice_reports",   // model name
+  "janVoice_reports",  
   reportschema,
-  "janVoice_reports"    // collection name
+  "janVoice_reports"  
 );
 
-// ================= USERS DEBUG =================
+
 app.get("/check-users", async (req, res) => {
   const users = await mongoose.connection.db
     .collection("janVoice_users")
@@ -117,17 +117,17 @@ app.get("/check-users", async (req, res) => {
   res.json(users);
 })
 
-// ================= GET ALL ISSUES (ONLY ONE VERSION KEPT) =================
+
 app.get("/getAllIssues", async (req, res) => {
   try {
-    const data = await reportModel.find();  // ✅ USE THIS
+    const data = await reportModel.find();
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// ================= REGISTER =================
+
 app.post("/register", (req, res) => {
     const new_user = new userModel({
         username: req.body.username,
@@ -142,7 +142,7 @@ app.post("/register", (req, res) => {
     })
 })
 
-// ================= LOGIN (ADMIN ONLY) =================
+
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -165,7 +165,6 @@ app.post("/login", async (req, res) => {
   res.json({ success: true, user, token });
 });
 
-// ================= ADD ISSUE =================
 app.post("/addIssue", upload.single("issue_image"), (req, res) => {
     const new_report = new reportModel({
         issue_name: req.body.issue_name,
@@ -180,7 +179,7 @@ app.post("/addIssue", upload.single("issue_image"), (req, res) => {
     })
 })
 
-// ================= GET ALL USERS (ONLY ONCE ENABLED VERSION) =================
+
 app.get("/getAllUsers",  verifyToken,async (req, res) => {
   try {
     const users = await mongoose.connection.db
@@ -194,7 +193,7 @@ app.get("/getAllUsers",  verifyToken,async (req, res) => {
   }
 })
 
-// ================= GET MY ISSUES =================
+
 app.get("/getmyIssues/:id", (req, res) => {
     reportModel.find({ userId: req.params.id })
         .then((data) => {
@@ -202,7 +201,7 @@ app.get("/getmyIssues/:id", (req, res) => {
         })
 })
 
-// ================= UPDATE ISSUE =================
+
 app.post("/updateIssue", async (req, res) => {
   try {
     const issueId = req.body.issueId;
@@ -241,7 +240,7 @@ app.post("/updateIssue", async (req, res) => {
   }
 });
 
-// ================= DELETE ISSUE =================
+
 app.post("/deleteIssue", (req, res) => {
     reportModel.findByIdAndDelete(req.body.issueId)
     .then((data) => {
@@ -249,7 +248,7 @@ app.post("/deleteIssue", (req, res) => {
     })
 })
 
-// ================= FILTER ISSUES =================
+
 app.post("/getIssuesByStatus", (req, res) => {
     if(req.body.issue_status === "all"){
         reportModel.find().then((data) => res.json(data))
@@ -259,7 +258,7 @@ app.post("/getIssuesByStatus", (req, res) => {
     }
 })
 
-// ================= USER FILTER ISSUES =================
+
 app.post("/getmyIssuesByStatus", (req, res) => {
     if(req.body.issue_status === "all"){
         reportModel.find({userId:req.body.userId})
