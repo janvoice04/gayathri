@@ -1,7 +1,11 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./welcome.css";
+export default function Welcome() {
+  const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
+  console.log("WELCOME TOKEN:", token);
 
-export default function Welcome({ onStart }) {
   return (
     <div className="welcome-container">
       <div className="welcome-box">
@@ -18,8 +22,9 @@ export default function Welcome({ onStart }) {
           <li>📊 Complaint Monitoring</li>
           <li>🏛️ Admin Control</li>
         </ul>
-
-        <button onClick={onStart}>🚀 Get Started</button>
+        <button onClick={() => navigate("/admin/dashboard")}>
+          🚀 Get Started
+        </button>
       </div>
     </div>
   );
