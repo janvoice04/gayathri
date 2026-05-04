@@ -1,0 +1,84 @@
+
+.welcome-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.6s ease-in-out;
+background: linear-gradient(135deg, #ede9fe, #e0f2fe);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.welcome-box {
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+ background: #ffffff;
+border-radius: 14px;
+border: 2px solid transparent;
+background-image: linear-gradient(white, white),
+                  linear-gradient(135deg, #60a5fa, #a78bfa);
+background-origin: border-box;
+background-clip: padding-box, border-box;
+}
+
+
+.welcome-box h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.welcome-box p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+
+.welcome-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcome-box li {
+  font-size: 15px;
+  color: #333;
+}
+
+
+.welcome-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #1e3a8a;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.welcome-box button:hover {
+  background: #163172;
+  transform: scale(1.05);
+}
+@media (max-width:768px) {
+  .welcome-box{
+    width:350px;
+  }
+}
