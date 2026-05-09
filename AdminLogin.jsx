@@ -16,17 +16,18 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await login(form);
-    if (res.data?.success) {
-      dispatch(
-        setLogin({
-          user: res.data.user,
-          token: res.data.token,
-        })
-      );
-      navigate("/admin/dashboard");
-    } else {
-      alert(res.data?.msg || "Login failed");
-    }
+ if (res.data?.success) {
+  dispatch(
+    setLogin({
+      user: res.data.user,
+      token: res.data.token,
+    })
+  );
+
+  navigate("/welcome");
+} else {
+  alert(res.data?.msg || "Login failed");
+}
   };
   return (
     <div className="login-container">
