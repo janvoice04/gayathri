@@ -13,17 +13,9 @@ import ProtectedRoute from "./jan/admin/ProtectedRoute";
 export default function App() {
   return (
     <Routes>
-
-      {/* DEFAULT */}
       <Route path="/" element={<Navigate to="/admin/login" />} />
-
-      {/* LOGIN */}
       <Route path="/admin/login" element={<AdminLogin />} />
-
-      {/* REGISTER */}
       <Route path="/admin/register" element={<AdminRegister />} />
-
-      {/* WELCOME */}
       <Route
         path="/welcome"
         element={
@@ -32,8 +24,6 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-
-      {/* ADMIN DASHBOARD LAYOUT */}
       <Route
         path="/admin"
         element={
