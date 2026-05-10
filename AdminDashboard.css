@@ -120,7 +120,19 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
+.dashboard-container {
+  padding: 20px;
+}
 
+.dashboard-title {
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  color: gray;
+  margin-bottom: 25px;
+}
 .dashboard-card {
   background: white;
   padding: 20px;
@@ -132,12 +144,16 @@
 }
 
 .dashboard-card h4 {
-  color: #1e3a8a;
+  margin-bottom: 12px;
+  color: #444;
 }
-
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
 .dashboard-card p {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
+  color: #1e3a8a;
 }
 
 .filters {
@@ -155,9 +171,9 @@
 }
 
 .list-grid {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .card {
@@ -217,9 +233,30 @@
   border-radius: 10px;
   max-width: 400px;
 }
+.users-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
 
+.users-column {
+  flex: 1;
+}
+
+.section-title {
+  margin-bottom: 15px;
+  color: #1e3a8a;
+}
 .setting-item {
   margin: 10px 0;
+}
+.setting-item button{
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  background: #1e3a8a;
+  color: white;
+  cursor: pointer;
 }
 .admin-controls {
   display: flex;
